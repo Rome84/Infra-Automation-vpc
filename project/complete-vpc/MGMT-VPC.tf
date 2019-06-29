@@ -28,7 +28,7 @@ module "MGMT-VPC" {
   openvpnserver_AMIS = "ami-0352afdfcf90ad1b5"
 
   create_database_subnet_group = false
-  enable_bastion = true
+  enable_bastion = false
   enable_jenkins = true
   enable_nexus = false
   enable_artifactory = false
