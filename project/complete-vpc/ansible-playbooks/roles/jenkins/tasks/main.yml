@@ -12,7 +12,9 @@
     state: present
 
 - name: Download jenkins Repo
-  get_url: url=https://pkg.jenkins.io/redhat-stable/jenkins.repo dest=/etc/yum.repos.d/jenkins.repo
+  get_url: 
+    url: "https://pkg.jenkins.io/redhat-stable/jenkins.repo"
+    dest: "/etc/yum.repos.d/jenkins.repo"
 
 - name: Installing jenkins key
   command: "rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io.key"
@@ -26,21 +28,21 @@
 - name: Install apache-maven
   yum: name=apache-maven state=present
 
-#- name: Configuring docker repo
-#  shell: 'yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo'
+- name: Configuring docker repo
+  shell: 'yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo'
 
-#- name: Install Docker
-#  yum: 
-#    name: ['docker-ce', 'docker-ce-cli', 'containerd.io']
-#    state: present
+- name: Install Docker
+  yum: 
+    name: ['docker-ce', 'docker-ce-cli', 'containerd.io']
+    state: present
 
-#- name: Adding jenkins user to docker group
-#  user:
-#    name: 'jenkins'
-#    groups: docker
-#    append: yes
+- name: Adding jenkins user to docker group
+  user:
+    name: 'jenkins'
+    groups: docker
+    append: yes
 
-- name: Maven custom repo disable
+- name: Maven custom repo diable
   template: src=maven-repo-disable dest=/etc/yum.repos.d/epel-apache-maven.repo
 
 #- name: Download Maven
